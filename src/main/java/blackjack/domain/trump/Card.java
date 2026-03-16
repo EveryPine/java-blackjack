@@ -1,9 +1,8 @@
 package blackjack.domain.trump;
 
-import blackjack.dto.CardDto;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public final class Card {
 
@@ -51,5 +50,19 @@ public final class Card {
 
     public boolean isEqualTo(final Card other) {
         return this.suit == other.suit && this.denomination == other.denomination;
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final Card card = (Card) object;
+        return suit == card.suit && denomination == card.denomination;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(suit, denomination);
     }
 }

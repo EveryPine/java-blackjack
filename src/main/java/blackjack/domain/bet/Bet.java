@@ -1,6 +1,7 @@
 package blackjack.domain.bet;
 
 import blackjack.utils.Formatter;
+import java.util.Objects;
 
 public final class Bet {
 
@@ -40,5 +41,19 @@ public final class Bet {
 
     public boolean isEqualTo(final Bet other) {
         return this.amount == other.amount;
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final Bet bet = (Bet) object;
+        return amount == bet.amount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(amount);
     }
 }
